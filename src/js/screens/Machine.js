@@ -13,26 +13,21 @@ import Value from 'grommet/components/Value';
 import Spinning from 'grommet/components/icons/Spinning';
 import LinkPrevious from 'grommet/components/icons/base/LinkPrevious';
 
-import {
-  loadTask, unloadTask
-} from '../actions/tasks';
-
+import { loadMachine } from '../actions/machines';
 import { pageLoaded } from './utils';
 
-class Task extends Component {
+class Machine extends Component {
   componentDidMount() {
     const { match: { params }, dispatch } = this.props;
-    pageLoaded('Task');
-    dispatch(loadTask(params.id));
+    pageLoaded('Machine');
+    dispatch(loadMachine(params.id));
   }
 
-  componentWillUnmount() {
-    const { match: { params }, dispatch } = this.props;
-    dispatch(unloadTask(params.id));
-  }
 
   render() {
-    const { error, task } = this.props;
+    const { error, data } = this.props;
+
+    console.log(this.props);
 
     let errorNode;
     let taskNode;
@@ -45,7 +40,7 @@ class Task extends Component {
           message='An unexpected error happened, please try again later'
         />
       );
-    } else if (!task) {
+    } else if (!data) {
       taskNode = (
         <Box
           direction='row'
@@ -58,19 +53,14 @@ class Task extends Component {
     } else {
       taskNode = (
         <Box pad='medium'>
-          <Label>Status: {task.status}</Label>
+          <Label>Status: {data.status}</Label>
           <Box
-            direction='row'
             responsive={false}
             pad={{ between: 'small' }}
           >
-            <Value
-              value={task.percentComplete}
-              units='%'
-              align='start'
-              size='small'
-            />
-            <Meter value={task.percentComplete} />
+            <Label>MachineType: {data.machine_type}</Label>
+            <Label>Install Date: {data.install_date}</Label>
+            <Label>Last Maintenance: {data.last_maintenance}</Label>
           </Box>
         </Box>
       );
@@ -86,11 +76,11 @@ class Task extends Component {
           responsive={false}
           pad={{ horizontal: 'small' }}
         >
-          <Anchor path='/tasks'>
-            <LinkPrevious a11yTitle='Back to Tasks' />
+          <Anchor path='/machines'>
+            <LinkPrevious a11yTitle='Back to Machines' />
           </Anchor>
           <Heading margin='none' strong={true}>
-            {task ? task.name : 'Task'}
+            {data ? `Machine ${data.id}` : 'Machine'}
           </Heading>
         </Header>
         {errorNode}
@@ -101,18 +91,13 @@ class Task extends Component {
   }
 }
 
-Task.defaultProps = {
+Machine.defaultProps = {
   error: undefined,
-  task: undefined
+  task: undefined,
+  data: undefined,
 };
 
-Task.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  error: PropTypes.object,
-  match: PropTypes.object.isRequired,
-  task: PropTypes.object
-};
 
 const select = state => ({ ...state.tasks });
 
-export default connect(select)(Task);
+export default connect(select)(Machine);
