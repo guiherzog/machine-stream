@@ -28,6 +28,7 @@ class Main extends Component {
     const {
       nav: { active: navActive, enabled: navEnabled, responsive }
     } = this.props;
+
     const includeNav = (navActive && navEnabled);
     let nav;
     if (includeNav) {

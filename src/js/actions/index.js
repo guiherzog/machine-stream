@@ -9,12 +9,6 @@ export const SESSION_LOGOUT = 'SESSION_LOGOUT';
 export const DASHBOARD_LOAD = 'DASHBOARD_LOAD';
 export const DASHBOARD_UNLOAD = 'DASHBOARD_UNLOAD';
 
-// Tasks
-export const TASKS_LOAD = 'TASKS_LOAD';
-export const TASKS_UNLOAD = 'TASKS_UNLOAD';
-export const TASK_LOAD = 'TASK_LOAD';
-export const TASK_UNLOAD = 'TASK_UNLOAD';
-
 // Machines
 export const MACHINES_LOAD = 'TASKS_LOAD';
 export const MACHINE_LOAD = 'TASK_LOAD';

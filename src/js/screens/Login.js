@@ -9,7 +9,6 @@ import Section from 'grommet/components/Section';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Footer from 'grommet/components/Footer';
-import Logo from 'grommet/components/icons/Grommet';
 
 import { login } from '../actions/session';
 import { navEnable } from '../actions/nav';
@@ -43,18 +42,18 @@ class Login extends Component {
 
     return (
       <Split flex='left' separator={true}>
-
         <Article>
           <Section
             full={true}
             colorIndex='neutral-1'
             pad='large'
+            texture='url(img/texture.png)'
             justify='center'
             align='center'
           >
             <Heading tag='h1' strong={true}>Welcome to MachineStream</Heading>
             <Paragraph align='center' size='large'>
-              Microscope & Measurement Machines
+              Smart Maintenance Solution by ZEISS
             </Paragraph>
           </Section>
         </Article>
@@ -63,8 +62,7 @@ class Login extends Component {
           <span />
           <LoginForm
             align='start'
-            logo={<Logo className='logo' colorIndex='neutral-1' />}
-            title='Machine Stream'
+            title='MachineStream'
             onSubmit={this._onSubmit}
             errors={[error]}
             usernameType='text'

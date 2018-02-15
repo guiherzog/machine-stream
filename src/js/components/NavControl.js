@@ -1,21 +1,17 @@
-// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
-import Title from 'grommet/components/Title';
-import Logo from 'grommet/components/icons/Grommet';
-
+import Pulse from 'grommet/components/icons/Pulse';
+import MenuIcon from 'grommet/components/icons/base/Menu';
 import { navActivate } from '../actions/nav';
 
 class NavControl extends Component {
   render() {
-    const { name, nav: { active } } = this.props;
+    const { nav: { active } } = this.props;
 
-    let result;
-    const title = <Title>{name || 'Machine Stream'}</Title>;
+    let result = null;
     if (!active) {
       result = (
         <Button onClick={() => this.props.dispatch(navActivate(true))}>
@@ -24,13 +20,10 @@ class NavControl extends Component {
             responsive={false}
             pad={{ between: 'small' }}
           >
-            <Logo />
-            {title}
+            <Pulse icon={<MenuIcon />} />
           </Box>
         </Button>
       );
-    } else {
-      result = title;
     }
     return result;
   }
@@ -47,7 +40,6 @@ NavControl.defaultProps = {
 
 NavControl.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  name: PropTypes.string,
   nav: PropTypes.object
 };
 
