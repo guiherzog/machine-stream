@@ -55,8 +55,8 @@ export function logout(session) {
       localStorage.removeItem('name');
       localStorage.removeItem('token');
     } catch (e) {
-      // ignore
+      alert('There was a problem trying to log out.');
     }
-    window.location.href = '/login'; // reload fully
+    window.location.href = '/login';
   };
 }
