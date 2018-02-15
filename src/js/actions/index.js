@@ -15,6 +15,10 @@ export const TASKS_UNLOAD = 'TASKS_UNLOAD';
 export const TASK_LOAD = 'TASK_LOAD';
 export const TASK_UNLOAD = 'TASK_UNLOAD';
 
+// Machines
+export const MACHINES_LOAD = 'TASKS_LOAD';
+export const MACHINE_LOAD = 'TASK_LOAD';
+
 // Nav
 export const NAV_ACTIVATE = 'NAV_ACTIVATE';
 export const NAV_ENABLE = 'NAV_ENABLE';
