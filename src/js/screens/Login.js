@@ -47,15 +47,14 @@ class Login extends Component {
         <Article>
           <Section
             full={true}
-            colorIndex='brand'
-            texture='url(img/splash.png)'
+            colorIndex='neutral-1'
             pad='large'
             justify='center'
             align='center'
           >
-            <Heading tag='h1' strong={true}>Machine Stream</Heading>
+            <Heading tag='h1' strong={true}>Welcome to MachineStream</Heading>
             <Paragraph align='center' size='large'>
-              Development with Grommet is cool.
+              Microscope & Measurement Machines
             </Paragraph>
           </Section>
         </Article>
@@ -64,7 +63,7 @@ class Login extends Component {
           <span />
           <LoginForm
             align='start'
-            logo={<Logo className='logo' colorIndex='brand' />}
+            logo={<Logo className='logo' colorIndex='neutral-1' />}
             title='Machine Stream'
             onSubmit={this._onSubmit}
             errors={[error]}
@@ -75,7 +74,7 @@ class Login extends Component {
             size='small'
             pad={{ horizontal: 'medium', vertical: 'small' }}
           >
-            <span className='secondary'>&copy; 2017 Grommet Labs</span>
+            <span className='secondary'>&copy; 2018 ZEISS Digital Innovation Partners</span>
           </Footer>
         </Sidebar>
 
