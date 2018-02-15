@@ -9,7 +9,6 @@ import Menu from 'grommet/components/Menu';
 import Button from 'grommet/components/Button';
 import CloseIcon from 'grommet/components/icons/base/Close';
 import Anchor from 'grommet/components/Anchor';
-
 import SessionMenu from './SessionMenu';
 import { navActivate } from '../actions/nav';
 

@@ -13,6 +13,7 @@ const initialState = {
   items: [
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/machines', label: 'Machines' },
+    { path: '/events', label: 'Monitoring' },
   ]
 };
 

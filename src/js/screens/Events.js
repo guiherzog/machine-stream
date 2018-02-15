@@ -18,23 +18,23 @@ import { getMessage } from 'grommet/utils/Intl';
 import NavControl from '../components/NavControl';
 
 import {
-  loadTasks, unloadTasks
-} from '../actions/tasks';
+  loadEvents, unloadEvents
+} from '../actions/events';
 
 import { pageLoaded } from './utils';
 
-class Tasks extends Component {
+class Events extends Component {
   componentDidMount() {
-    pageLoaded('Tasks');
-    this.props.dispatch(loadTasks());
+    pageLoaded('Events');
+    this.props.dispatch(loadEvents());
   }
 
   componentWillUnmount() {
-    this.props.dispatch(unloadTasks());
+    this.props.dispatch(unloadEvents());
   }
 
   render() {
-    const { error, tasks } = this.props;
+    const { error, events } = this.props;
     const { intl } = this.context;
 
     let errorNode;
@@ -48,18 +48,18 @@ class Tasks extends Component {
           message='An unexpected error happened, please try again later'
         />
       );
-    } else if (tasks.length === 0) {
+    } else if (events.length === 0) {
       listNode = (
         <Box
           direction='row'
           responsive={false}
           pad={{ between: 'small', horizontal: 'medium', vertical: 'medium' }}
         >
-          <Spinning /><span>Loading...</span>
+          <Spinning /><span>Loading Monitor...</span>
         </Box>
       );
     } else {
-      const tasksNode = (tasks || []).map(task => (
+      const tasksNode = (events || []).map(task => (
         <ListItem
           key={`task_${task.id}`}
           justify='between'
@@ -96,12 +96,12 @@ class Tasks extends Component {
           size='large'
           pad={{ horizontal: 'medium', between: 'small' }}
         >
-          <NavControl name={getMessage(intl, 'Tasks')} />
+          <NavControl name={getMessage(intl, 'Monitoring')} />
         </Header>
         {errorNode}
         <Box pad={{ horizontal: 'medium' }}>
           <Paragraph size='large'>
-            The backend here is using websocket.
+            This page provides a near real-time graph to monitor any issues on all machines.
           </Paragraph>
         </Box>
         {listNode}
@@ -110,21 +110,17 @@ class Tasks extends Component {
   }
 }
 
-Tasks.defaultProps = {
+Events.defaultProps = {
   error: undefined,
-  tasks: []
+  events: [],
 };
 
-Tasks.propTypes = {
+Events.propTypes = {
   dispatch: PropTypes.func.isRequired,
   error: PropTypes.object,
-  tasks: PropTypes.arrayOf(PropTypes.object)
-};
-
-Tasks.contextTypes = {
-  intl: PropTypes.object
+  events: PropTypes.arrayOf(PropTypes.object)
 };
 
 const select = state => ({ ...state.tasks });
 
-export default connect(select)(Tasks);
+export default connect(select)(Events);

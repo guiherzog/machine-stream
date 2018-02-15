@@ -11,6 +11,7 @@ import { navResponsive } from '../actions/nav';
 import Login from '../screens/Login';
 import Dashboard from '../screens/Dashboard';
 import Machines from '../screens/Machines';
+import Events from '../screens/Events';
 import Machine from '../screens/Machine';
 import NotFound from '../screens/NotFound';
 
@@ -50,6 +51,7 @@ class Main extends Component {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/login' component={Login} />
               <Route path='/machines/:id' component={Machine} />
+              <Route path='/events' component={Events} />
               <Route path='/machines' component={Machines} />
               <Route path='/*' component={NotFound} />
             </Switch>
