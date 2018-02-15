@@ -2,14 +2,14 @@ import { DASHBOARD_LOAD, DASHBOARD_UNLOAD } from '../actions';
 import { createReducer } from './utils';
 
 const initialState = {
-  tasks: []
+  machines: []
 };
 
 const handlers = {
   [DASHBOARD_LOAD]: (state, action) => {
     if (!action.error) {
       action.payload.error = undefined;
-      return action.payload;
+      return { machines: action.payload.data };
     }
     return { error: action.payload };
   },

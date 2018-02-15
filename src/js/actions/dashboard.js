@@ -1,20 +1,17 @@
 import { DASHBOARD_LOAD, DASHBOARD_UNLOAD } from '../actions';
-import { watchDashboard, unwatchDashboard } from '../api/dashboard';
+// import { watchDashboard, unwatchDashboard } from '../api/dashboard';
+import { getMachines } from '../api/machines';
 
 export function loadDashboard() {
   return dispatch => (
-    watchDashboard()
-      .on('success',
-        payload => dispatch({ type: DASHBOARD_LOAD, payload })
-      )
-      .on('error',
-        payload => dispatch({ type: DASHBOARD_LOAD, error: true, payload })
-      )
-      .start()
+    getMachines()
+      .then((payload) => {
+        dispatch({ type: DASHBOARD_LOAD, payload });
+      })
   );
 }
 
 export function unloadDashboard() {
-  unwatchDashboard();
+  // unwatchDashboard();
   return { type: DASHBOARD_UNLOAD };
 }
