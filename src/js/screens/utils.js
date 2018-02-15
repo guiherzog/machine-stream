@@ -1,6 +1,6 @@
 import { announcePageLoaded } from 'grommet/utils/Announcer';
 
-const DEFAULT_TITLE = 'Machine Stream';
+const DEFAULT_TITLE = 'MachineStream';
 
 export function pageLoaded(title) {
   if (document) {
