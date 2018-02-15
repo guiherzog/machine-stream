@@ -10,7 +10,7 @@ const handlers = {
   [MACHINES_LOAD]: (state, action) => {
     if (!action.error) {
       action.payload.error = undefined;
-      return { machines: action.payload };
+      return { machines: action.payload.data };
     }
     return { error: action.payload };
   },

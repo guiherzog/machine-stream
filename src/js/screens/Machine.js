@@ -7,9 +7,7 @@ import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
-import Meter from 'grommet/components/Meter';
 import Notification from 'grommet/components/Notification';
-import Value from 'grommet/components/Value';
 import Spinning from 'grommet/components/icons/Spinning';
 import LinkPrevious from 'grommet/components/icons/base/LinkPrevious';
 
@@ -25,9 +23,7 @@ class Machine extends Component {
 
 
   render() {
-    const { error, data } = this.props;
-
-    console.log(this.props);
+    const { error, machine } = this.props;
 
     let errorNode;
     let taskNode;
@@ -40,7 +36,7 @@ class Machine extends Component {
           message='An unexpected error happened, please try again later'
         />
       );
-    } else if (!data) {
+    } else if (!machine) {
       taskNode = (
         <Box
           direction='row'
@@ -53,14 +49,14 @@ class Machine extends Component {
     } else {
       taskNode = (
         <Box pad='medium'>
-          <Label>Status: {data.status}</Label>
+          <Label>Status: {machine.status}</Label>
           <Box
             responsive={false}
             pad={{ between: 'small' }}
           >
-            <Label>MachineType: {data.machine_type}</Label>
-            <Label>Install Date: {data.install_date}</Label>
-            <Label>Last Maintenance: {data.last_maintenance}</Label>
+            <Label>MachineType: {machine.machine_type}</Label>
+            <Label>Install Date: {machine.install_date}</Label>
+            <Label>Last Maintenance: {machine.last_maintenance}</Label>
           </Box>
         </Box>
       );
@@ -80,7 +76,7 @@ class Machine extends Component {
             <LinkPrevious a11yTitle='Back to Machines' />
           </Anchor>
           <Heading margin='none' strong={true}>
-            {data ? `Machine ${data.id}` : 'Machine'}
+            {machine ? `Machine ${machine.id}` : 'Machine'}
           </Heading>
         </Header>
         {errorNode}
@@ -93,10 +89,15 @@ class Machine extends Component {
 
 Machine.defaultProps = {
   error: undefined,
-  task: undefined,
-  data: undefined,
+  machine: undefined,
 };
 
+Machine.propTypes = {
+  match: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  error: PropTypes.object,
+  machine: PropTypes.object,
+};
 
 const select = state => ({ ...state.tasks });
 

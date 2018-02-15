@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Anchor from 'grommet/components/Anchor';
@@ -6,20 +7,66 @@ import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Label from 'grommet/components/Label';
-import List from 'grommet/components/List';
-import ListItem from 'grommet/components/ListItem';
+import Tiles from 'grommet/components/Tiles';
 import Notification from 'grommet/components/Notification';
+import Title from 'grommet/components/Title';
 import Card from 'grommet/components/Card';
 import Paragraph from 'grommet/components/Paragraph';
+import Search from 'grommet/components/Search';
+
 import Spinning from 'grommet/components/icons/Spinning';
 import Status from 'grommet/components/icons/Status';
-import { getMessage } from 'grommet/utils/Intl';
+import MeasureIcon from 'grommet/components/icons/base/Vulnerability';
+import RepairedIcon from 'grommet/components/icons/base/Compliance';
+import MicroscopeIcon from 'grommet/components/icons/base/SearchAdvanced';
 
 import NavControl from '../components/NavControl';
 
-import { loadMachines } from '../actions/machines';
+import { loadMachines, unloadMachines } from '../actions/machines';
 
 import { pageLoaded } from './utils';
+
+function getStatusComponent(status) {
+  switch (status) {
+    case 'running':
+      return <Spinning />;
+    case 'finished':
+      return <Status value='ok' />;
+    case 'errored':
+      return <Status value='critical' />;
+    case 'repaired':
+      return <RepairedIcon />;
+    default:
+      return <Status value='unknown' />;
+  }
+}
+
+function getMachineTypeComponent(type) {
+  switch (type) {
+    case 'measurement':
+      return (
+        <Box
+          direction='row'
+          align='center'
+          pad={{ between: 'small' }}
+        >
+          <MeasureIcon />
+          <Label>Measurement</Label>
+        </Box>);
+    case 'microscope':
+      return (
+        <Box
+          direction='row'
+          align='center'
+          pad={{ between: 'small' }}
+        >
+          <MicroscopeIcon />
+          <Label>Microscope</Label>
+        </Box>);
+    default:
+      return 'Unkown Type';
+  }
+}
 
 class Machines extends Component {
   componentDidMount() {
@@ -31,20 +78,9 @@ class Machines extends Component {
     this.props.dispatch(unloadMachines());
   }
 
-  getStatusComponent(status){
-    switch (status){
-      case 'running':
-        return <Spinning />
-      case 'finished':
-        return <Status value='ok' />
-      default:
-        return <Status value='unknown' />
-    }
-  }
-
   render() {
-    const { error, data } = this.props;
-    const { intl } = this.context;
+    const { error, machines } = this.props;
+
     let errorNode;
     let listMachines;
     if (error) {
@@ -56,10 +92,9 @@ class Machines extends Component {
           message='An unexpected error happened, please try again later'
         />
       );
-    } else if (data.length === 0) {
+    } else if (machines.length === 0) {
       listMachines = (
         <Box
-          direction='row'
           responsive={false}
           pad={{ between: 'small', horizontal: 'medium', vertical: 'medium' }}
         >
@@ -67,27 +102,35 @@ class Machines extends Component {
         </Box>
       );
     } else {
-      const tasksNode = (data || []).map(machine => (
+      const tasksNode = (machines || []).map(machine => (
         <Card
+          colorIndex='light-2'
+          margin='small'
           key={`machine_${machine.id}`}
-          justify='between'
-          label={machine.status}
+          heading={`Machine #${machine.id.substr(-4)}`}
+          description={getMachineTypeComponent(machine.machine_type)}
+          label={
+            <Box
+              direction='row'
+              responsive={true}
+              align='center'
+              pad={{ between: 'small' }}
+            >
+              {getStatusComponent(machine.status)}
+              <Label>{machine.status.toUpperCase()}</Label>
+            </Box>
+          }
         >
-          <Label><Anchor path={`/machines/${machine.id}`} label={machine.id} /></Label>
-          <Box
-            direction='row'
-            responsive={true}
-            pad={{ between: 'small' }}
-          >
-            {this.getStatusComponent(machine.status)}
-          </Box>
+          <Label><Anchor path={`/machines/${machine.id}`} label={'Check Details'} /></Label>
         </Card>
       ));
 
       listMachines = (
-        <List>
+        <Tiles
+          fill={true}
+        >
           {tasksNode}
-        </List>
+        </Tiles>
       );
     }
 
@@ -99,7 +142,17 @@ class Machines extends Component {
           size='large'
           pad={{ horizontal: 'medium', between: 'small' }}
         >
-          <NavControl name={getMessage(intl, 'Machines Deployed')} />
+          <NavControl />
+          <Title>
+            Machines Deployed
+          </Title>
+          <Search
+            inline={true}
+            fill={true}
+            size='medium'
+            placeHolder='Search for a Machine'
+            dropAlign={{ right: 'right' }}
+          />
         </Header>
         {errorNode}
         <Box pad={{ horizontal: 'medium' }}>
@@ -115,9 +168,16 @@ class Machines extends Component {
 
 Machines.defaultProps = {
   error: undefined,
-  data: [],
+  machines: [],
 };
 
-const select = state => ({ ...state.tasks });
+Machines.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  error: PropTypes.object,
+  machines: PropTypes.arrayOf(PropTypes.object)
+};
+
+
+const select = state => ({ ...state.machines });
 
 export default connect(select)(Machines);
