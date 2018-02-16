@@ -1,9 +1,6 @@
 import RequestWatcher from './request-watcher';
 
-let protocol = 'ws:';
-if (window.location.protocol === 'https:') {
-  protocol = 'wss:';
-}
+const protocol = 'ws:';
 const host = 'machinestream.herokuapp.com';
 const webSocketUrl = `${protocol}//${host}`;
 
@@ -13,6 +10,7 @@ let eventsWatcher;
 
 export function watchEvents() {
   eventsWatcher = socketWatcher.watch('/api/v1/events');
+  console.log(eventsWatcher);
   return eventsWatcher;
 }
 
