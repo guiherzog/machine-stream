@@ -21,7 +21,7 @@ import {
   loadEvents
 } from '../actions/events';
 
-import { pageLoaded, getColorIndex, getStatusComponent } from './utils';
+import { pageLoaded, getColorIndex } from './utils';
 
 function getMessage(status) {
   switch (status) {
