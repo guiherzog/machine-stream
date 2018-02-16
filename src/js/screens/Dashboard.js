@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 
 import Article from 'grommet/components/Article';
@@ -46,9 +48,7 @@ class Dashboard extends Component {
 
   render() {
     const { error, machines } = this.props;
-
     console.log(machines);
-
     let errorNode;
     if (error) {
       errorNode = (
@@ -91,7 +91,7 @@ class Dashboard extends Component {
             pad={{ between: 'small', horizontal: 'medium', vertical: 'medium' }}
           >
             <Title>
-              Status
+              Usage Status
             </Title>
             <AnnotatedMeter
               legend={true}

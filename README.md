@@ -1,4 +1,4 @@
-# machine-stream
+# Machine Stream
 
 This is a sample Grommet application for reference.
 
