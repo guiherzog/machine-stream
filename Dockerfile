@@ -1,25 +1,18 @@
-# You should always specify a full version here to ensure all of your developers
-# are running the same version of Node.
 FROM node:7.8.0
 
-# The base node image sets a very verbose log level.
-ENV NPM_CONFIG_LOGLEVEL warn
+MAINTAINER Guilherme Herzog
 
-# Copy all local files into the image.
-COPY . .
+# Create app dir
+RUN mkdir -p /app
+WORKDIR /app
 
-# Build for production.
-RUN npm run build --production
+# Copy app (including package.json) into the image
+COPY . /app
 
-# Install `serve` to run the application.
-RUN npm install -g serve
+RUN npm install
 
-# Set Node Env.
-NODE_ENV=production grommet pack
+RUN npm run dev-server
 
-# Set the command to start the node server.
-CMD serve -s build
+RUN npm run dev
 
-# Tell Docker about the port we'll run on.
-EXPOSE 80
-
+EXPOSE 3000
