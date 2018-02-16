@@ -1,40 +1,57 @@
+
 # Machine Stream
 
-This is a sample Grommet application for reference.
+ZEISS MachineStream is a smart maintenance solution for large industrial clients using different ZEISS products such as microscopes and measurement machines. 
 
-To run this application, execute the following commands:
+It is planned to allow an operator to monitor these assets remotely in near real-time.
 
-  1. Install NPM modules
+![Image of Dashboard](https://github.com/guiherzog/machine-stream/blob/master/docs/dashboard.png?raw=true)
+## Project Stack
+The tech stack for this project has been chosen with the main goal of providing a rapid prototyping framework to be able to **develop** and **build** on just a few hours. While it has many world-class development techniques, it still presents some disadvantages due to the limited timeframe and scope.
+### Advantages
+These are a few techniques, frameworks, tools that help in bringing a consistent code and more resilient to bugs, performance issues, etc.
+ 1. #### React to manage UI.
+ 2. #### Redux to manage States.
+ 3. #### Linting & Tests to provide code readability & cleanliness.
+ 4. #### Continuous Integration (GIT).
+ 5. #### High Modularity & Easy Maintainability.
+ 6. #### Grommet UI Library (For Rapid Prototyping).
+ 7. #### Proper Documentation from start.
 
+### Disadvantages
+These are a few points that could be improved on the project, if it was the case of continuing its development.
+
+ 1. #### Limited Styling Customisation.
+ 2. #### High Code Complexity.
+ 3. #### Code clarity & Comments.
+ 4. #### Refactor to remove unused code & some duplication.
+ 5. #### Use of **GitFlow**.
+ 6. #### Implement Continuous Deployment using Docker containers.
+ 7. #### Make events update all Data.
+
+## Development Instructions 
+To run this application in development mode, execute the following steps:
+
+  1. Clone Repository:
+    ```
+      $ git clone https://github.com/guiherzog/machine-stream.git
+    ```
+  2. Rum NPM Install:
     ```
     $ npm install (or yarn install)
     ```
-
-  2. Start the back-end server:
+  3. Start the mock-up back-end server (to simulate login):
 
     ```
     $ npm run dev-server
     ```
 
-  3. Start the front-end dev server:
+  4. Start the front-end dev server:
 
     ```
     $ npm run dev
     ```
-
-  4. Create the app distribution to be used by a back-end server
-
-    ```
-    $ NODE_ENV=production grommet pack
-    ```
-
-  5. Start the server in production mode:
-
-    ```
-    $ npm start
-    ```
-
-  6. Test and run linters:
+  5. To run basic tests and linters:
 
     ```
     $ npm test
