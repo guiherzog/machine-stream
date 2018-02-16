@@ -66,7 +66,7 @@ To run this application in development mode, execute the following steps:
     
   **Time Tracking & Management Tool:**
   
-    TrackingTime: https://github.com/guiherzog/machine-stream/blob/master/docs/timetrackingmachinestream.pdf
+    TrackingTime: https://github.com/guiherzog/machine-stream/blob/master/docs/trackingtimemachinestream.pdf
     
   **Low-Fi & Design Tool:**
   
