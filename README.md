@@ -6,6 +6,11 @@ ZEISS MachineStream is a smart maintenance solution for large industrial clients
 It is planned to allow an operator to monitor these assets remotely in near real-time.
 
 ![Image of Dashboard](https://github.com/guiherzog/machine-stream/blob/master/docs/dashboard.png?raw=true)
+
+## Online Demo
+You can access the platform deployed on AWS EC2:
+[Access Demonstration Now](http://34.217.180.82:3000)
+
 ## Project Stack
 The tech stack for this project has been chosen with the main goal of providing a rapid prototyping framework to be able to **develop** and **build** on just a few hours. While it has many world-class development techniques, it still presents some disadvantages due to the limited timeframe and scope.
 ### Advantages
