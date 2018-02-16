@@ -21,7 +21,7 @@ import {
   loadEvents
 } from '../actions/events';
 
-import { pageLoaded } from './utils';
+import { pageLoaded, getColorIndex, getStatusComponent } from './utils';
 
 function getMessage(status) {
   switch (status) {
@@ -75,11 +75,17 @@ class Events extends Component {
         <ListItem
           key={`task_${event.id}`}
           justify='between'
+          align='center'
+          colorIndex={getColorIndex(event.status)}
         >
-          <Label>
-            <Anchor path={`/machines/${event.machine_id}`} label={`Machine #${event.machine_id.substr(-4)}`} />
+          <span>
+            <Anchor
+              icon
+              path={`/machines/${event.machine_id}`}
+              label={`Machine #${event.machine_id.substr(-4)}`}
+            />
             {getMessage(event.status)}
-          </Label>
+          </span>
           <Box
             direction='row'
             responsive={false}

@@ -16,31 +16,14 @@ import Paragraph from 'grommet/components/Paragraph';
 import Search from 'grommet/components/Search';
 
 import Spinning from 'grommet/components/icons/Spinning';
-import Status from 'grommet/components/icons/Status';
 import MeasureIcon from 'grommet/components/icons/base/Vulnerability';
-import RepairedIcon from 'grommet/components/icons/base/Compliance';
 import MicroscopeIcon from 'grommet/components/icons/base/SearchAdvanced';
 
 import NavControl from '../components/NavControl';
 
 import { loadMachines, unloadMachines } from '../actions/machines';
 
-import { pageLoaded } from './utils';
-
-function getStatusComponent(status) {
-  switch (status) {
-    case 'running':
-      return <Spinning />;
-    case 'finished':
-      return <Status value='ok' />;
-    case 'errored':
-      return <Status value='critical' />;
-    case 'repaired':
-      return <RepairedIcon />;
-    default:
-      return <Status value='unknown' />;
-  }
-}
+import { pageLoaded, getStatusComponent } from './utils';
 
 function getMachineTypeComponent(type) {
   switch (type) {

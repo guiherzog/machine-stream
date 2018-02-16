@@ -18,22 +18,7 @@ import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
 
 import { loadMachine } from '../actions/machines';
-import { pageLoaded } from './utils';
-
-function getColorIndex(status) {
-  switch (status) {
-    case 'finished':
-      return 'ok';
-    case 'running':
-      return 'warning';
-    case 'errored':
-      return 'critical';
-    case 'repaired':
-      return 'accent-1';
-    default:
-      return 'unknown';
-  }
-}
+import { pageLoaded, getColorIndex } from './utils';
 
 class Machine extends Component {
   componentDidMount() {
@@ -117,7 +102,7 @@ class Machine extends Component {
           responsive={false}
           pad={{ between: 'small', horizontal: 'medium', vertical: 'medium' }}
         >
-          <Spinning /><span>Loading...</span>
+          <Spinning /><span>Getting Machine Details...</span>
         </Box>
       );
     } else {
