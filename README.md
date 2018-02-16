@@ -52,13 +52,17 @@ To run this application in development mode, execute the following steps:
     ```
     $ npm test
     ```
+
 ## Management Tools
 
-  #### Agile Process Tool: 
+  **Agile Process Tool:** 
+  
     Trello Board: https://trello.com/b/I7WrF4gc
     
-  #### Time Tracking & Management Tool:
+  **Time Tracking & Management Tool:**
+  
     TrackingTime: https://github.com/guiherzog/machine-stream/blob/master/docs/timetrackingmachinestream.pdf
     
-  #### Low-Fi & Design Tool:
+  **Low-Fi & Design Tool:**
+  
     Adobe Experience Design
