@@ -11,19 +11,32 @@ import Label from 'grommet/components/Label';
 import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
 import Notification from 'grommet/components/Notification';
-import Meter from 'grommet/components/Meter';
 import Paragraph from 'grommet/components/Paragraph';
-import Value from 'grommet/components/Value';
 import Spinning from 'grommet/components/icons/Spinning';
-import { getMessage } from 'grommet/utils/Intl';
-
+import Title from 'grommet/components/Title';
 import NavControl from '../components/NavControl';
+import Timestamp from 'grommet/components/Timestamp';
 
 import {
-  loadEvents, unloadEvents
+  loadEvents
 } from '../actions/events';
 
 import { pageLoaded } from './utils';
+
+function getMessage(status) {
+  switch (status) {
+    case 'repaired':
+      return ' has just been repaired.';
+    case 'finished':
+      return ' finished a task.';
+    case 'running':
+      return ' started a task.';
+    case 'errored':
+      return ' had an error and needs attention.';
+    default:
+      return ' had an unknown activity.';
+  }
+}
 
 class Events extends Component {
   componentDidMount() {
@@ -31,14 +44,9 @@ class Events extends Component {
     this.props.dispatch(loadEvents());
   }
 
-  componentWillUnmount() {
-    this.props.dispatch(unloadEvents());
-  }
-
   render() {
     const { error, events } = this.props;
-    const { intl } = this.context;
-
+    console.log(events);
     let errorNode;
     let listNode;
     if (error) {
@@ -55,30 +63,29 @@ class Events extends Component {
         <Box
           direction='row'
           responsive={false}
+          alignSelf='center'
+          align='center'
           pad={{ between: 'small', horizontal: 'medium', vertical: 'medium' }}
         >
-          <Spinning /><span>Loading Monitor...</span>
+          <Spinning /><Label>Waiting for new events...</Label>
         </Box>
       );
     } else {
-      const tasksNode = (events || []).map(task => (
+      const tasksNode = (events || []).map(event => (
         <ListItem
-          key={`task_${task.id}`}
+          key={`task_${event.id}`}
           justify='between'
         >
-          <Label><Anchor path={`/tasks/${task.id}`} label={task.name} /></Label>
+          <Label>
+            <Anchor path={`/machines/${event.machine_id}`} label={`Machine #${event.machine_id.substr(-4)}`} />
+            {getMessage(event.status)}
+          </Label>
           <Box
             direction='row'
             responsive={false}
             pad={{ between: 'small' }}
           >
-            <Value
-              value={task.percentComplete}
-              units='%'
-              align='start'
-              size='small'
-            />
-            <Meter value={task.percentComplete} />
+            <span><Timestamp value={event.timestamp} /></span>
           </Box>
         </ListItem>
       ));
@@ -98,11 +105,14 @@ class Events extends Component {
           size='large'
           pad={{ horizontal: 'medium', between: 'small' }}
         >
-          <NavControl name={getMessage(intl, 'Monitoring')} />
+          <NavControl />
+          <Title>
+            Real-Time Monitor
+          </Title>
         </Header>
         {errorNode}
         <Box pad={{ horizontal: 'medium' }}>
-          <Paragraph size='large'>
+          <Paragraph size='medium'>
             This page provides a near real-time graph to monitor any issues on all machines.
           </Paragraph>
         </Box>
@@ -123,6 +133,6 @@ Events.propTypes = {
   events: PropTypes.arrayOf(PropTypes.object)
 };
 
-const select = state => ({ ...state.tasks });
+const select = state => ({ ...state.events });
 
 export default connect(select)(Events);

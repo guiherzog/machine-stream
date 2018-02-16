@@ -9,7 +9,6 @@ export function loadEvents() {
       .on('new',
         payload => dispatch({ type: EVENTS_NEW, payload })
       )
-      .start()
   );
 }
 

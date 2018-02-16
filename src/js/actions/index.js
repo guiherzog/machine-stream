@@ -13,6 +13,10 @@ export const DASHBOARD_UNLOAD = 'DASHBOARD_UNLOAD';
 export const MACHINES_LOAD = 'MACHINES_LOAD';
 export const MACHINE_LOAD = 'MACHINE_LOAD';
 
+// Events
+export const EVENTS_NEW = 'EVENTS_NEW';
+export const EVENTS_UNLOAD = 'EVENTS_UNLOAD';
+
 // Nav
 export const NAV_ACTIVATE = 'NAV_ACTIVATE';
 export const NAV_ENABLE = 'NAV_ENABLE';

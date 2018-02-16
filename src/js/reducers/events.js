@@ -10,7 +10,8 @@ const handlers = {
   [EVENTS_NEW]: (state, action) => {
     if (!action.error) {
       action.payload.error = undefined;
-      return action.payload;
+      const events = [action.payload, ...state.events];
+      return { events };
     }
     return { error: action.payload };
   },
