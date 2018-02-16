@@ -21,7 +21,7 @@ export function login(email, password, done) {
   return dispatch => (
     postSession(email, password)
       .then((payload) => {
-        updateHeaders({ Auth: payload.token });
+        // updateHeaders({ Auth: payload.token });
         dispatch({ type: SESSION_LOGIN, payload });
         try {
           localStorage.email = payload.email;

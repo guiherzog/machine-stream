@@ -2,7 +2,7 @@ import RequestWatcher from './request-watcher';
 
 let _headers = {
   Accept: 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
 };
 
 export function headers() {
