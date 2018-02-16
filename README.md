@@ -1,5 +1,5 @@
 
-# Machine Stream
+# ZEISS MachineStream
 
 ZEISS MachineStream is a smart maintenance solution for large industrial clients using different ZEISS products such as microscopes and measurement machines. 
 
@@ -41,18 +41,24 @@ To run this application in development mode, execute the following steps:
     $ npm install (or yarn install)
     ```
   3. Start the mock-up back-end server (to simulate login):
-
     ```
     $ npm run dev-server
     ```
-
   4. Start the front-end dev server:
-
     ```
     $ npm run dev
     ```
   5. To run basic tests and linters:
-
     ```
     $ npm test
     ```
+## Management Tools
+
+  #### Agile Process Tool: 
+    Trello Board: https://trello.com/b/I7WrF4gc
+    
+  #### Time Tracking & Management Tool:
+    TrackingTime: https://github.com/guiherzog/machine-stream/blob/master/docs/timetrackingmachinestream.pdf
+    
+  #### Low-Fi & Design Tool:
+    Adobe Experience Design
