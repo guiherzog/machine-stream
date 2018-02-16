@@ -119,7 +119,7 @@ class Events extends Component {
         {errorNode}
         <Box pad={{ horizontal: 'medium' }}>
           <Paragraph size='medium'>
-            This page provides a near real-time graph to monitor any issues on all machines.
+            This page provides a list to monitor activities happening on all machines.
           </Paragraph>
         </Box>
         {listNode}

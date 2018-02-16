@@ -135,7 +135,7 @@ class Machines extends Component {
             inline={true}
             fill={true}
             size='medium'
-            placeHolder='Search for a Machine'
+            placeHolder='Type status here...'
             dropAlign={{ right: 'right' }}
           />
         </Header>
