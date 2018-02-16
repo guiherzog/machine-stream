@@ -109,20 +109,21 @@ class Machines extends Component {
           margin='small'
           key={`machine_${machine.id}`}
           heading={`Machine #${machine.id.substr(-4)}`}
+          textSize='small'
           description={getMachineTypeComponent(machine.machine_type)}
           label={
             <Box
               direction='row'
-              responsive={true}
               align='center'
+              margin='small'
               pad={{ between: 'small' }}
             >
               {getStatusComponent(machine.status)}
-              <Label>{machine.status.toUpperCase()}</Label>
+              <span>{machine.status.toUpperCase()}</span>
             </Box>
           }
         >
-          <Label><Anchor path={`/machines/${machine.id}`} label={'Check Details'} /></Label>
+          <span><Anchor path={`/machines/${machine.id}`} label={'More Details'} /></span>
         </Card>
       ));
 

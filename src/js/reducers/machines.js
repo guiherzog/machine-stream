@@ -17,8 +17,9 @@ const handlers = {
   [MACHINES_UNLOAD]: () => initialState,
   [MACHINE_LOAD]: (state, action) => {
     if (!action.error) {
+      console.log(action);
       action.payload.error = undefined;
-      return { machine: action.payload };
+      return { machine: action.payload.data };
     }
     return { error: action.payload };
   },

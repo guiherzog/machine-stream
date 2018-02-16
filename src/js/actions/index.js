@@ -10,8 +10,8 @@ export const DASHBOARD_LOAD = 'DASHBOARD_LOAD';
 export const DASHBOARD_UNLOAD = 'DASHBOARD_UNLOAD';
 
 // Machines
-export const MACHINES_LOAD = 'TASKS_LOAD';
-export const MACHINE_LOAD = 'TASK_LOAD';
+export const MACHINES_LOAD = 'MACHINES_LOAD';
+export const MACHINE_LOAD = 'MACHINE_LOAD';
 
 // Nav
 export const NAV_ACTIVATE = 'NAV_ACTIVATE';
