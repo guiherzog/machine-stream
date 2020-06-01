@@ -1,5 +1,5 @@
 
-# ZEISS MachineStream
+# ZEISS MachineStream (Study Case)
 
 ZEISS MachineStream is a smart maintenance solution for large industrial clients using different ZEISS products such as microscopes and measurement machines. 
 
@@ -13,7 +13,7 @@ You can access the platform deployed on AWS EC2:
 
 ## Project Stack
 The tech stack for this project has been chosen with the main goal of providing a rapid prototyping framework to be able to **develop** and **build** on just a few hours. While it has many world-class development techniques, it still presents some disadvantages due to the limited timeframe and scope.
-### Advantages
+### Strengths
 These are a few techniques, frameworks, tools that help in bringing a consistent code and more resilient to bugs, performance issues, etc.
  1. #### React to manage UI.
  2. #### Redux to manage States.
@@ -23,7 +23,7 @@ These are a few techniques, frameworks, tools that help in bringing a consistent
  6. #### Grommet UI Library (For Rapid Prototyping).
  7. #### Proper Documentation from start.
 
-### Disadvantages
+### Technical Debt & Possible Improvements
 These are a few points that could be improved on the project, if it was the case of continuing its development.
 
  1. #### Limited Styling Customisation.
